@@ -7,21 +7,21 @@ vpn_providers:
   protonvpn:
     num_containers: 2
     required_env:
-      - OPENVPN_USER: [USERNAME]
-      - OPENVPN_PASSWORD: [PASSWORD]
+      OPENVPN_USER: [USERNAME]
+      OPENVPN_PASSWORD: [PASSWORD]
     optional_env:
-      - SERVER_COUNTRIES: Netherlands
-      - FREE_ONLY: off
-      - VPN_PORT_FORWARDING: off
+      SERVER_COUNTRIES: Netherlands
+      FREE_ONLY: off
+      VPN_PORT_FORWARDING: off
 
 
   private_internet_access:
     num_containers: 2
     server_regions:
-      - Netherlands
+      Netherlands
     required_env:
-      - OPENVPN_USER: [USERNAME]
-      - OPENVPN_PASSWORD: [PASSWORD]
+      OPENVPN_USER: [USERNAME]
+      OPENVPN_PASSWORD: [PASSWORD]
     optional_env:
-      - FREE_ONLY: off
-      - VPN_PORT_FORWARDING: off
+      FREE_ONLY: off
+      VPN_PORT_FORWARDING: off
