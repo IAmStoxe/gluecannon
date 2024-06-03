@@ -20,6 +20,31 @@ The script is invoked from the command line with an action argument. The availab
 - `run`: Run a command through the HAProxy. This action requires an additional argument specifying the command to run.
 - `interactive`: Start an interactive shell through the HAProxy.
 
+```mermaid
+graph LR
+    subgraph Docker Network
+        direction LR
+        subgraph VPN_Providers
+            direction LR
+            provider1_0[Provider1_Container0]
+            provider1_1[Provider1_Container1]
+            provider2_0[Provider2_Container0]
+        end
+        haproxy[HAProxy]
+    end
+    
+    haproxy -->|Routes Traffic| provider1_0
+    haproxy -->|Routes Traffic| provider1_1
+    haproxy -->|Routes Traffic| provider2_0
+    
+    subgraph External Network
+        user[User]
+    end
+    
+    user -->|Accesses via Proxy| haproxy
+
+```
+
 Example usage:
 
 ```bash
