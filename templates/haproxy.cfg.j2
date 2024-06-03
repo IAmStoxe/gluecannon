@@ -1,0 +1,22 @@
+# HAProxy configuration template
+global
+    log 127.0.0.1 local0
+    maxconn 4096
+defaults
+    log global
+    mode http
+    option httplog
+    timeout connect 5000
+    timeout client 50000
+    timeout server 50000
+frontend http-in
+    bind *:{{ proxy_port }}
+    default_backend vpn-backends
+backend vpn-backends
+    mode http
+    balance roundrobin
+    {% for provider, services in all_services.items() %}
+    {% for service_name, service_address in services.items() %}
+    server {{ service_name }} {{ service_address }} check
+    {% endfor %}
+    {% endfor %}
