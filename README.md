@@ -33,15 +33,18 @@ graph LR
         haproxy[HAProxy]
     end
     
+    user[User] -->|Requests Access| haproxy
     haproxy -->|Routes Traffic| provider1_0
     haproxy -->|Routes Traffic| provider1_1
     haproxy -->|Routes Traffic| provider2_0
     
     subgraph External Network
-        user[User]
+        internet[Internet]
     end
     
+    internet --> user
     user -->|Accesses via Proxy| haproxy
+    haproxy -->|Connects to| internet
 
 ```
 
